@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Policy;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Problem7
+{
+    internal class Program
+    {
+        static bool isNumberInInt(string s, double intervalOne, double intervalTwo)
+        {
+            if (intervalOne>intervalTwo)
+            {
+                double proxy = intervalOne;
+                intervalOne = intervalTwo;
+                intervalTwo = proxy;
+            }
+            double num;
+            bool flag = double.TryParse(s, out num);
+            if (flag && num >= intervalOne && num <= intervalTwo)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        static void Main(string[] args)
+        {
+            Console.Write("Enter string: ");
+            string s = Console.ReadLine();
+            Console.Write("Enter interval one: ");
+            double a = double.Parse(Console.ReadLine());
+            Console.Write("Enter interval two: ");
+            double b = double.Parse(Console.ReadLine());
+            Console.WriteLine(isNumberInInt(s, a, b) ? "The input is a number and is inside the interval" : "One of the conditions is not met!");
+            Console.ReadKey();
+        }
+    }
+}
