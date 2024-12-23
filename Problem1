@@ -1,0 +1,142 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Remoting.Proxies;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Problem1
+{
+    internal class Program
+    {
+        static string[] hexadecimal(int num)
+        {
+            int counter = 0;
+            int proxy = num;
+            while (num > 0)
+            {
+                num /= 16;
+                counter++;
+            }
+            string[] myArr = new string[counter];
+            counter = 0;
+            while (proxy > 0)
+            {
+                switch (proxy % 16)
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9:
+                        myArr[counter++] = (proxy % 16).ToString();
+                        break;
+                    case 10:
+                        myArr[counter++] = "A";
+                        break;
+                    case 11:
+                        myArr[counter++] = "B";
+                        break;
+                    case 12:
+                        myArr[counter++] = "C";
+                        break;
+                    case 13:
+                        myArr[counter++] = "D";
+                        break;
+                    case 14:
+                        myArr[counter++] = "E";
+                        break;
+                    case 15:
+                        myArr[counter++] = "F";
+                        break;
+                }
+                proxy /= 16;
+            }
+            return myArr;
+        }
+        static int[] simpleConversion(int num,int decimalType)
+        {
+            int counter = 0;
+            int proxy = num;
+            while (num > 0)
+            {
+                num /= decimalType;
+                counter++;
+            }
+            int[] myArr = new int[counter];
+            counter = 0;
+            while (proxy > 0)
+            {
+                myArr[counter++] = proxy%decimalType;
+                proxy /= decimalType;
+            }
+            return myArr;
+        }
+        
+        static void Main(string[] args)
+        {
+            // Input (Works only if we assign a >=0 value. Could be modified to work with all integers with some more code in the functions)
+            Console.Write("Enter a non-negative integer value: ");
+            string input = Console.ReadLine();
+
+            int num;
+            bool flag;
+            do
+            {
+                flag = int.TryParse(input, out num);
+                if (!flag)
+                {
+                    Console.WriteLine("The input is invalid! Please try again!");
+                    Console.Write("Enter a non-negative integer value: ");
+                    flag = int.TryParse(Console.ReadLine(), out num);
+                }
+            } while (!flag);
+
+            // Binary
+            
+            int[] binaryConversion = simpleConversion(num,2);
+
+            for (int i = binaryConversion.Length-1; i >= 0; i--)
+            {
+                if (i == binaryConversion.Length-1)
+                {
+                    Console.Write("Binary value: ");
+                }
+                Console.Write(binaryConversion[i]);
+            }
+
+            //Octal
+
+            int[] octalConversion = simpleConversion(num,8);
+
+            for (int i = octalConversion.Length-1; i >= 0; i--)
+            {
+                if (i== octalConversion.Length - 1)
+                {
+                    Console.Write("\nOctal value: ");
+                }
+                Console.Write(octalConversion[i]);
+            }
+
+            //Hexadecimal
+
+            string[] hexadecConversion = hexadecimal(num);
+
+            for (int i = hexadecConversion.Length-1;i >= 0; i--)
+            {
+                if (i == hexadecConversion.Length - 1)
+                {
+                    Console.Write("\nHexadecimal value: ");
+                }
+                Console.Write(hexadecConversion[i]);
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
