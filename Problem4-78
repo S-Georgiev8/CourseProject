@@ -1,0 +1,24 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CourseProject_23._12
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            double sum = 0;
+            for(int i =1; i <=100; i++)
+            {
+                sum += Math.Pow(i, 2) / (Math.Pow(i, 3) + 1);
+            }
+            Console.WriteLine("Result: " + sum);
+            Console.ReadKey();
+            /* WolframAlpha calculation:
+             * https://www.wolframalpha.com/input?i2d=true&i=Sum%5B%5C%2840%29Divide%5BPower%5Bi%2C2%5D%2CPower%5Bi%2C3%5D%2B1%5D%5C%2841%29%2C%7Bi%2C1%2C100%7D%5D */ 
+        }
+    }
+}
