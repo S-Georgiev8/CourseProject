@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Problem5
+{
+    internal class Program
+    {
+        static double method(int num)
+        {
+            double sum = 0;
+
+            for (int i = 1; i <= num; i++)
+            {
+                sum += Math.Sqrt(Math.Sqrt(i));
+            }
+            return sum;
+        }
+        static void Main(string[] args)
+        {
+            Console.Write("a = ");
+            int a = int.Parse(Console.ReadLine());
+            Console.Write("b = ");
+            int b = int.Parse(Console.ReadLine());
+
+            double result = method(a + b) + method(Math.Abs(a - b));
+
+            Console.WriteLine("Result: " + result);
+
+            Console.ReadKey();
+
+            // Calculator: https://www.wolframalpha.com/input?i2d=true&i=Sum%5BSurd%5Bi%2C4%5D%2C%7Bi%2C1%2C6%2B10%7D%5D%2B+Sum%5BSurd%5Bi%2C4%5D%2C%7Bi%2C1%2CAbs%5B6-10%5D%7D%5D
+      
+
+        }
+    }
+}
