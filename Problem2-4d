@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Problem2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            double x, y, z, t;
+            Console.Write("x=");
+            x = double.Parse(Console.ReadLine());
+            Console.Write("y=");
+            y = double.Parse(Console.ReadLine());
+            Console.Write("z=");
+            z = double.Parse(Console.ReadLine());
+            if (y - x == 0 || (x + z / (y - x) == 0))
+            {
+                Console.WriteLine("Indeterminate!");
+            }
+            else
+            {
+                t = (x + y) / (z + (z / (x + (z / (y - x)))));
+                Console.WriteLine("Result: " + t);
+            }
+            Console.ReadKey();
+        }
+    }
+}
