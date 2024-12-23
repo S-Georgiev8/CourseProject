@@ -1,0 +1,66 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Problem6
+{
+    internal class Program
+    {
+        static void arrayInput(uint[] myArr)
+        {
+            for (int i =0; i < myArr.Length; i++)
+            {
+                bool flag;
+                do
+                {
+                    Console.Write("Enter value for day " + (i + 1) + ": ");
+                    flag = uint.TryParse(Console.ReadLine(), out myArr[i]);
+                    if (!flag)
+                    {
+                        Console.WriteLine("Rainfall must be a non-negative value");
+                    }
+                }
+                while (!flag);
+            }
+        }
+        static int rainfall(uint[] myArr)
+        {
+            int counter = 0;
+            for (int i = 0; i < myArr.Length; i++)
+            {
+                if (myArr[i] != 0)
+                {
+                    counter++;
+                }
+            }
+            return counter;
+        }
+        static void Main(string[] args)
+        {
+            Console.Write("Days: ");
+            uint n = uint.Parse(Console.ReadLine());
+            while (n > 31)
+            {
+                Console.WriteLine("Invalid input! Please try again!");
+                n = uint.Parse(Console.ReadLine());
+            }
+
+            uint[] A = new uint[n];
+            uint[] B = new uint[n];
+            uint[] C = new uint[n];
+
+            arrayInput(A);
+            Console.WriteLine("It rained " + rainfall(A) +  " times during the month in station A");
+            arrayInput(B);
+            Console.WriteLine("It rained " + rainfall(B) + " times during the month in station B");
+            arrayInput(C);
+            Console.WriteLine("It rained " + rainfall(C) + " times during the month int station C");
+
+            
+            Console.ReadKey();
+        }
+    }
+}
